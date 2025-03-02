@@ -1,0 +1,8 @@
+{
+  "appSettings": {
+    "appHost": "localhost:8833"
+  },
+  "admins": [
+    "::1"
+  ]
+}
