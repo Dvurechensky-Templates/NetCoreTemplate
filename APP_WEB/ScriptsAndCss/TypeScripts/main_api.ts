@@ -1,5 +1,9 @@
-﻿import { Cookies } from "./cookies";
-import { Utilities } from "./utilities";
+﻿import { PageReadyStateChangedEvent } from "./Base/Components/BaseEvents";
+import { Alerts } from "./Base/Services/Alerts/Alerts";
+import { Cookies } from "./Base/Services/Cookies";
+import { Utilities } from "./Base/Services/Utilities";
+import { ContactPage } from "./Pages/Contacts";
+import { IndexPage } from "./Pages/IndexPage";
 
 (() => {
     //по загрузке окна
@@ -10,6 +14,9 @@ import { Utilities } from "./utilities";
         //создаем экземпляр класса кук
         const cookies = new Cookies();
 
+        //создаем экземпляр класса уведомлений
+        const alerts = new Alerts();
+
         //получаем текущий URL
         const currentUrl = new URL(document.location.href);
 
@@ -19,18 +26,54 @@ import { Utilities } from "./utilities";
         //разбиваем пути URL на части
         const partsPath = pathname.split("/");
 
+        // Состояние IndexPage, изначально неопределенное
+        let indexPageState = { 
+            ReadyState: undefined
+        };
+
+        window.addEventListener('pageStateChanged', function (event:
+            CustomEvent<PageReadyStateChangedEvent>) {
+            const stateName = event.detail.stateName;
+            const stateValue = event.detail.stateValue;
+
+            if (stateName === 'ReadyState') {
+                indexPageState.ReadyState = stateValue;
+            }
+
+            CheckStatesAndProceed();
+        });
+
         //смотрим путь
         switch (partsPath[1]) {
-            case "": //страница авторизации
+            case "": 
                 {
-                    //создаем экземпляр класса авторизации
-                    //const auth = new IndexPage(utilities, cookies);
-                    ////запускаем авторизацию
-                    //await auth.startPage();
+                    // создаем экземпляр страницы
+                    const page = new IndexPage(utilities, cookies, alerts);
+                    // запускаем 
+                    await page.StartPage();
+                }
+                break;
+            case "contacts": 
+                {
+                    // создаем экземпляр страницы
+                    const page = new ContactPage(utilities, cookies, alerts);
+                    // запускаем 
+                    await page.StartPage();
                 }
                 break;
             default:
                 break;
+        }
+
+        function CheckStatesAndProceed() {
+            if (indexPageState.ReadyState !== undefined) {
+                // Все необходимые состояния получены
+                if (indexPageState.ReadyState) {
+                    console.log("Success Start Page");
+                } else {
+                    console.log("Wait Load Page");
+                }
+            }
         }
     });
 })();

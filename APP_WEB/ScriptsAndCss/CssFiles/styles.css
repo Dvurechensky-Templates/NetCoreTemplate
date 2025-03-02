@@ -20,3 +20,125 @@ html {
 body {
     margin-bottom: 60px;
 }
+
+/*   
+    **************************
+    START ALERT
+    **************************
+*/
+
+/* Основные стили для контейнера уведомлений */
+#notification-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+}
+
+.error_alert_animate {
+    border: 1px solid #AC0B00;
+}
+
+.ok_alert_animate {
+    border: 1px solid #007126;
+}
+
+.warning_alert_animate {
+    border: 1px solid #A33E00;
+}
+
+/* Стили для уведомлений */
+.notification {
+    background-color: #333;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    max-width: 300px;
+    opacity: 1;
+    animation: slideUpAndFade 5s ease-in-out forwards;
+}
+
+/* Анимация для подъема уведомления вверх и его исчезновения */
+@keyframes slideUpAndFade {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-50%); /* Поднимаем уведомление до середины экрана */
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-100%); /* Двигаем уведомление еще выше */
+        opacity: 0;
+    }
+}
+
+/*   
+    **************************
+    END ALERT
+    **************************
+*/
+
+/*   
+    **************************
+    START ANIMS
+    **************************
+*/
+
+
+.puff-in-center {
+    -webkit-animation: puff-in-center 0.1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: puff-in-center 0.1s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+/**
+ *              ----------------------------------------
+ *              animation puff-in-center
+ *              ----------------------------------------
+ */
+@-webkit-keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+/*   
+    **************************
+    END ANIMS
+    **************************
+*/

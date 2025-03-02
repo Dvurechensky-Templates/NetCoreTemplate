@@ -3,20 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AppWeb</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/app.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AppWeb.styles.css" asp-append-version="true" />
+    <script src="~/js/app.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+     @RenderBody()
+
+    <div id="notification-container"></div> <!-- Контейнер для уведомлений -->
+
+    <!--Start Example Svg Icons-->
+@*     <div class="hidden">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <symbol viewBox="0 0 512 512" xml:space="preserve" id="menu" xmlns="http://www.w3.org/2000/svg">
+            <path d="M256 0C114.617 0 0 114.618 0 256c0 141.383 114.617 256 256 256 141.382 0 256-114.617 256-256C512 114.618 397.382 0 256 0zm117.649 366.297H138.351V322.18h235.298v44.117zm0-88.242H138.351v-44.102h235.298v44.102zm0-88.227H138.351v-44.117h235.298v44.117z" />
+                 </symbol>
+        </svg>
+    </div> *@
+    <!--End svg icons-->
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/app.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

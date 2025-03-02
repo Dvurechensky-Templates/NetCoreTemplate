@@ -1,4 +1,4 @@
-import { Alerts } from "./alerts";
+import { Alerts } from "./Alerts/Alerts";
 
 /**
  * Класс вспомогательных методов

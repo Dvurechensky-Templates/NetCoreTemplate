@@ -1,10 +1,8 @@
 ﻿export class Alerts {
     /**
      * Функция для отображения уведомления
-     * 
-     * TODO: Сделать синхронизацию уведомления для всех - если она касается размещения задач на сервере
     */
-    public AlertShow(notification: Notification): void {
+    public AlertShow(notification: NotificationAlert): void {
         const container = document.getElementById('notification-container');
         if (!container) return;
 
@@ -37,15 +35,23 @@
     }
 }
 
-// Тип для уведомлений
-interface Notification {
-    text: string;
-    duration: number; // продолжительность отображения в секундах
-    type: TypeAlert;
+declare global {
+    /**
+     * Уведомление
+    */
+    interface NotificationAlert {
+        text: string;       // текст сообщения уведомления
+        duration: number;   // продолжительность отображения в секундах
+        type: TypeAlert;    // тип уведомления (расцветка)
+    }
 }
 
+
+/**
+ * Тип оповещения
+*/
 export enum TypeAlert {
     Error = 'error',
     Warning = 'warning',
-    Ok = 'ok',
+    Ok = 'ok'
 }

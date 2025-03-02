@@ -7,22 +7,55 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Cookies } from "./cookies";
-import { Utilities } from "./utilities";
+import { Alerts } from "./Base/Services/Alerts/Alerts";
+import { Cookies } from "./Base/Services/Cookies";
+import { Utilities } from "./Base/Services/Utilities";
+import { ContactPage } from "./Pages/Contacts";
+import { IndexPage } from "./Pages/IndexPage";
 (() => {
     window.addEventListener("load", () => __awaiter(void 0, void 0, void 0, function* () {
         const utilities = new Utilities();
         const cookies = new Cookies();
+        const alerts = new Alerts();
         const currentUrl = new URL(document.location.href);
         const pathname = currentUrl.pathname.toLowerCase();
         const partsPath = pathname.split("/");
+        let indexPageState = {
+            ReadyState: undefined
+        };
+        window.addEventListener('pageStateChanged', function (event) {
+            const stateName = event.detail.stateName;
+            const stateValue = event.detail.stateValue;
+            if (stateName === 'ReadyState') {
+                indexPageState.ReadyState = stateValue;
+            }
+            CheckStatesAndProceed();
+        });
         switch (partsPath[1]) {
             case "":
                 {
+                    const page = new IndexPage(utilities, cookies, alerts);
+                    yield page.StartPage();
+                }
+                break;
+            case "":
+                {
+                    const page = new ContactPage(utilities, cookies, alerts);
+                    yield page.StartPage();
                 }
                 break;
             default:
                 break;
+        }
+        function CheckStatesAndProceed() {
+            if (indexPageState.ReadyState !== undefined) {
+                if (indexPageState.ReadyState) {
+                    console.log("Success Start Page");
+                }
+                else {
+                    console.log("Wait Load Page");
+                }
+            }
         }
     }));
 })();
