@@ -1,3 +1,11 @@
+п»ї/*
+ * Author: Nikolay Dvurechensky
+ * Site: https://www.dvurechensky.pro/
+ * Gmail: dvurechenskysoft@gmail.com
+ * Last Updated: 12 РјР°СЏ 2025 06:05:33
+ * Version: 1.0.5
+ */
+
 using System.Reflection;
 using System.Text.Json;
 
@@ -17,20 +25,20 @@ builder.WebHost.UseUrls($"https://{builder.Configuration["appSettings:appHost"]}
 
 builder.Services.AddControllersWithViews();
 
-#region В этом регионе объявляем сервисы 
+#region Р’ СЌС‚РѕРј СЂРµРіРёРѕРЅРµ РѕР±СЉСЏРІР»СЏРµРј СЃРµСЂРІРёСЃС‹ 
 
-// Например
+// РќР°РїСЂРёРјРµСЂ
 // builder.Services.AddSingleton<ICashService, CashService>();
 
 #endregion
 
 builder.Services.Configure<JsonOptions>(options =>
 {
-    options.JsonSerializerOptions.WriteIndented = true; //для красивого форматирования
+    options.JsonSerializerOptions.WriteIndented = true; //РґР»СЏ РєСЂР°СЃРёРІРѕРіРѕ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ
     options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 });
 
-//настройки службы против подделки запросов
+//РЅР°СЃС‚СЂРѕР№РєРё СЃР»СѓР¶Р±С‹ РїСЂРѕС‚РёРІ РїРѕРґРґРµР»РєРё Р·Р°РїСЂРѕСЃРѕРІ
 builder.Services.AddAntiforgery(options =>
 {
     options.HeaderName = "X-CSRF-TOKEN";
@@ -42,7 +50,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "App API",
         Version = "1.0.0",
-        Description = "Информация об API",
+        Description = "РРЅС„РѕСЂРјР°С†РёСЏ РѕР± API",
         Contact = new OpenApiContact
         {
             Name = "Dvurechensky"
@@ -58,13 +66,13 @@ var app = builder.Build();
 var appLifetime = app.Services.GetRequiredService<IHostApplicationLifetime>();
 
 appLifetime.ApplicationStarted.Register(async () =>
-{   //инициализируем сервис логирования
+{   //РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј СЃРµСЂРІРёСЃ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ
     LoggingExtensions.Logging.InitializeLogging("API Reagent Project Control");
 });
 
 appLifetime.ApplicationStopping.Register(() =>
 {
-    LoggingExtensions.Logging.DeinitializeLogging(); //выключаем сервис логирования
+    LoggingExtensions.Logging.DeinitializeLogging(); //РІС‹РєР»СЋС‡Р°РµРј СЃРµСЂРІРёСЃ Р»РѕРіРёСЂРѕРІР°РЅРёСЏ
 });
 
 if (!app.Environment.IsDevelopment())
@@ -77,20 +85,20 @@ else
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Документация");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ");
         c.RoutePrefix = "docs";
     });
-    app.UseDeveloperExceptionPage(); //используем страницу исключений
+    app.UseDeveloperExceptionPage(); //РёСЃРїРѕР»СЊР·СѓРµРј СЃС‚СЂР°РЅРёС†Сѓ РёСЃРєР»СЋС‡РµРЅРёР№
 }
 
-app.UseCookiePolicy(); //использовать политику куки
+app.UseCookiePolicy(); //РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїРѕР»РёС‚РёРєСѓ РєСѓРєРё
 
 // app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseRouting();
 
-app.UseMiddleware<AntiforgeryMiddleware>(); //обработчик службы против подделки запросов
+app.UseMiddleware<AntiforgeryMiddleware>(); //РѕР±СЂР°Р±РѕС‚С‡РёРє СЃР»СѓР¶Р±С‹ РїСЂРѕС‚РёРІ РїРѕРґРґРµР»РєРё Р·Р°РїСЂРѕСЃРѕРІ
 app.UseAuthorization();
 
 app.MapControllerRoute(

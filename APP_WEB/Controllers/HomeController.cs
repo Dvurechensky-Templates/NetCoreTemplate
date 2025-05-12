@@ -1,3 +1,11 @@
+п»ї/*
+ * Author: Nikolay Dvurechensky
+ * Site: https://www.dvurechensky.pro/
+ * Gmail: dvurechenskysoft@gmail.com
+ * Last Updated: 12 РјР°СЏ 2025 06:05:33
+ * Version: 1.0.5
+ */
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AppWeb.Models;
@@ -5,23 +13,23 @@ using AppWeb.Models;
 namespace AppWeb.Controllers
 {
     /// <summary>
-    /// Главный контроллер
+    /// Р“Р»Р°РІРЅС‹Р№ РєРѕРЅС‚СЂРѕР»Р»РµСЂ
     /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
         /// <summary>
-        /// Конструктор
+        /// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
         /// </summary>
-        /// <param name="logger">Логирование MVC</param>
+        /// <param name="logger">Р›РѕРіРёСЂРѕРІР°РЅРёРµ MVC</param>
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
         /// <summary>
-        /// Главная
+        /// Р“Р»Р°РІРЅР°СЏ
         /// </summary>
         [HttpGet]
         [Route("/")]
@@ -31,7 +39,7 @@ namespace AppWeb.Controllers
         }
 
         /// <summary>
-        /// Контакты
+        /// РљРѕРЅС‚Р°РєС‚С‹
         /// </summary>
         [HttpGet]
         [Route("/contacts")]
@@ -41,7 +49,7 @@ namespace AppWeb.Controllers
         }
 
         /// <summary>
-        /// Ошибка
+        /// РћС€РёР±РєР°
         /// </summary>
         [HttpGet]
         [Route("/error")]
