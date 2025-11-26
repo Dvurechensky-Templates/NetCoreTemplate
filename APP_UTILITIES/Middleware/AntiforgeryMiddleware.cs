@@ -2,8 +2,8 @@
  * Author: Nikolay Dvurechensky
  * Site: https://sites.google.com/view/dvurechensky
  * Gmail: dvurechenskysoft@gmail.com
- * Last Updated: 25 ноября 2025 06:52:43
- * Version: 1.0.96
+ * Last Updated: 26 ноября 2025 06:52:54
+ * Version: 1.0.97
  */
 
 using APP_LOGGING.Accessories.LoggingAccessories;
