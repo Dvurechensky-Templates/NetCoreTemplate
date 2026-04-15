@@ -13,50 +13,62 @@
   </p>
 </p>
 
-<h1 align="center"> 🌁 Шаблон проекта ASP NET CORE MVC, Frontend - на TypeScript </h1>
+<h1 align="center"> 🌁 ASP.NET Core MVC Project Template, Frontend — TypeScript </h1>
 
-# ✨ Оглавление
-
-- [✨ Оглавление](#-оглавление)
-  - [🎇 Этапы наполнения конфигурациями 🎇](#-этапы-наполнения-конфигурациями-)
-  - [🎇 Этапы сборочного процесса 🎇](#-этапы-сборочного-процесса-)
-  - [🎇 Итог 🎇](#-итог-)
-      - [📷 База 📷](#-база-)
-      - [📷 Плюшки 📷](#-плюшки-)
-      - [📷 Примерный процесс разработки: 📷](#-примерный-процесс-разработки-)
-
-## 🎇 Этапы наполнения конфигурациями 🎇
+<div align="center" style="margin: 20px 0; padding: 10px; background: #1c1917; border-radius: 10px;">
+  <strong>🌐 Language: </strong>
+  
+  <a href="./README.ru.md" style="color: #F5F752; margin: 0 10px;">
+    🇷🇺 Russian
+  </a>
+  | 
+  <span style="color: #0891b2; margin: 0 10px;">
+    ✅ 🇺🇸 English (current)
+  </span>
+</div>
 
 ---
 
-1. ⛅ Импорт `tsconfig.json` ⛅
+# ✨ Table of Contents
+
+- [✨ Table of Contents](#-table-of-contents)
+  - [🎇 Configuration Setup Stages 🎇](#-configuration-setup-stages-)
+  - [🎇 Build Process Stages 🎇](#-build-process-stages-)
+  - [🎇 Result 🎇](#-result-)
+    - [📷 Base 📷](#-base-)
+    - [📷 Features 📷](#-features-)
+    - [📷 Approximate Development Process 📷](#-approximate-development-process-)
+
+## 🎇 Configuration Setup Stages 🎇
+
+---
+
+1. ⛅ Import `tsconfig.json` ⛅
 
 ---
 
 <details>
-<summary>Раскрыть код tsconfig.json</summary>
+<summary>Show tsconfig.json</summary>
 
 ```json
 {
 	"compilerOptions": {
-		"target": "es2016", // Устанавливает уровень JavaScript, в который компилируется TypeScript (в данном случае ES2016).
-		"module": "es6", // Определяет, какой модульный формат используется в процессе компиляции (ES6 модули).
-		"moduleResolution": "node", // Способ разрешения модулей. В данном случае используется разрешение как в Node.js.
-		"jsx": "preserve", // Как компилировать JSX. В данном случае оставляем JSX без изменений.
-		"declaration": false, // Указывает, генерировать ли файлы типов (.d.ts). Здесь это отключено.
-		"removeComments": true, // Указывает, что комментарии должны быть удалены из скомпилированного кода.
-		"noImplicitAny": false, // Отключает предупреждения о неявных типах `any` в коде.
-		"noEmitOnError": true, // Указывает, что компиляция должна быть остановлена, если есть ошибки.
-		"sourceMap": true, // Генерирует карты исходных кодов для упрощения отладки.
-		"esModuleInterop": true, // Включает совместимость с модулями ES при импорте CommonJS модулей.
-		"experimentalDecorators": true, // Включает поддержку экспериментальных декораторов в TypeScript.
-		"emitDecoratorMetadata": true, // Включает генерацию метаданных для декораторов, которые могут использоваться в таких библиотеках как TypeORM или Angular.
-		"outDir": "ScriptsAndCss/JsScripts", // Указывает директорию для сохранения скомпилированных файлов.
-		"lib": ["es2016", "dom"] // Указывает библиотеки, которые будут включены при компиляции (ES2016 и DOM).
+		"target": "es2016",
+		"module": "es6",
+		"moduleResolution": "node",
+		"jsx": "preserve",
+		"declaration": false,
+		"removeComments": true,
+		"noImplicitAny": false,
+		"noEmitOnError": true,
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"outDir": "ScriptsAndCss/JsScripts",
+		"lib": ["es2016", "dom"]
 	},
-	"exclude": [
-		"node_modules" // Исключает папку node_modules из процесса компиляции.
-	]
+	"exclude": ["node_modules"]
 }
 ```
 
@@ -64,30 +76,30 @@
 
 ---
 
-2. ⛅ Импорт `webpack.config.js` ⛅
+2. ⛅ Import `webpack.config.js` ⛅
 
 ---
 
 <details>
-<summary>Раскрыть код webpack.config.js</summary>
+<summary>Show webpack.config.js</summary>
 
 ```js
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin') // Импортируем TerserPlugin
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
 	entry: {
-		app: './ScriptsAndCss/TypeScripts/main_api.ts', // Точка входа для JavaScript
-		styles: './ScriptsAndCss/CssFiles/styles.css', // Точка входа для CSS (может быть любой CSS-файл)
+		app: './ScriptsAndCss/TypeScripts/main_api.ts',
+		styles: './ScriptsAndCss/CssFiles/styles.css',
 	},
 	output: {
 		path: path.resolve(__dirname, 'wwwroot/js'),
-		filename: '[name].min.js', // Используем [name] для динамического имени файла
+		filename: '[name].min.js',
 	},
 	resolve: {
-		extensions: ['.ts', '.js', '.css'], // Добавили .css
+		extensions: ['.ts', '.js', '.css'],
 	},
 	module: {
 		rules: [
@@ -98,16 +110,13 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader, // Извлекает CSS в отдельные файлы
-					'css-loader', // Обрабатывает @import и url()
-				],
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 		],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '../css/app.min.css', // Куда Webpack должен поместить CSS-файл
+			filename: '../css/app.min.css',
 		}),
 	],
 	mode: 'development',
@@ -116,20 +125,19 @@ module.exports = {
 ```
 
 </details>
-<br>
 
-> В случае публикации в Production релиза нужно сменить режим `mode: 'development'` на `mode: 'production'` в файле конфигурации
+> For production builds, change `mode: 'development'` to `mode: 'production'`
 
 <details>
-<summary>Раскрыть код изменений webpack.config.js</summary>
+<summary>Show production config</summary>
 
 ```js
-mode: 'production',  // Изменен режим на production для минимизации
+mode: 'production',
 optimization: {
-    minimize: true,  // Включаем минимизацию
+    minimize: true,
     minimizer: [
-        new TerserPlugin(),  // Плагин для минимизации JS
-        new CssMinimizerPlugin()  // Плагин для минимизации CSS
+        new TerserPlugin(),
+        new CssMinimizerPlugin()
     ]
 },
 ```
@@ -138,12 +146,12 @@ optimization: {
 
 ---
 
-3. ⛅ Импорт `package.json` - ряд плагинов опционален под ваш проект ⛅
+3. ⛅ Import `package.json` ⛅
 
 ---
 
 <details>
-<summary>Раскрыть код package.json</summary>
+<summary>Show package.json</summary>
 
 ```json
 {
@@ -173,32 +181,6 @@ optimization: {
 	},
 	"dependencies": {
 		"cytoscape": "^3.31.0"
-	},
-	"comments": {
-		"version": "Указывает текущую версию вашего проекта.",
-		"name": "Имя вашего проекта.",
-		"private": "Указывает, что проект является приватным и не должен быть опубликован в npm.",
-		"devDependencies": {
-			"css-minimizer-webpack-plugin": "Плагин для минимизации CSS файлов в процессе сборки Webpack.",
-			"terser-webpack-plugin": "Плагин для минимизации JavaScript с использованием Terser.",
-			"cytoscape": "Библиотека для работы с графами и сетями.",
-			"cytoscape-cose-bilkent": "Плагин для Cytoscape, который добавляет алгоритм планирования расположения узлов.",
-			"grunt": "Система автоматизации задач для Node.js, например, для сборки, минификации и тестирования.",
-			"style-loader": "Лоадер для инжекции CSS в DOM через теги `<style>` в процессе сборки.",
-			"css-loader": "Лоадер для обработки CSS файлов и поддержки импорта других CSS или стилей.",
-			"mini-css-extract-plugin": "Плагин для извлечения CSS в отдельные файлы, что улучшает производительность.",
-			"grunt-webpack": "Плагин для интеграции Webpack с системой Grunt.",
-			"webpack-cli": "CLI для работы с Webpack, позволяет запускать сборку через командную строку.",
-			"ts-loader": "Лоадер для загрузки TypeScript файлов в Webpack.",
-			"browser-sync": "Инструмент для синхронизации браузеров и автоперезагрузки в процессе разработки.",
-			"grunt-browser-sync": "Плагин для интеграции BrowserSync с Grunt.",
-			"grunt-contrib-clean": "Плагин для удаления файлов или папок перед выполнением задач.",
-			"grunt-contrib-concat": "Плагин для конкатенации (объединения) файлов в один.",
-			"grunt-contrib-cssmin": "Плагин для сжатия CSS файлов.",
-			"grunt-contrib-uglify": "Плагин для сжатия JavaScript файлов (использует UglifyJS).",
-			"grunt-contrib-watch": "Плагин для отслеживания изменений файлов и автоматического выполнения задач.",
-			"grunt-ts": "Плагин для компиляции TypeScript файлов в Grunt."
-		}
 	}
 }
 ```
@@ -207,12 +189,12 @@ optimization: {
 
 ---
 
-4. ⛅ Импорт `Gruntfile.js` ⛅
+4. ⛅ Import `Gruntfile.js` ⛅
 
 ---
 
 <details>
-<summary>Раскрыть код Gruntfile.js</summary>
+<summary>Show Gruntfile.js</summary>
 
 ```js
 const webpackConfig = require('./webpack.config.js')
@@ -228,41 +210,20 @@ module.exports = function (grunt) {
 				bsFiles: {
 					src: [
 						'wwwroot/css/*.css',
-						'wwwroot/js/app.min.js', // Webpack создает app.min.js
+						'wwwroot/js/app.min.js',
 						'Views/**/*.cshtml',
 					],
 				},
 				options: {
 					watchTask: true,
-					proxy: 'localhost:5000', // Замените на свой локальный адрес
+					proxy: 'localhost:5000',
 				},
 			},
 		},
 		watch: {
 			ts: {
 				files: ['ScriptsAndCss/TypeScripts/**/*.ts'],
-				tasks: ['webpack:build'], // Webpack компилирует и собирает
-				options: {
-					spawn: false,
-				},
-			},
-			bsReload: {
-				files: [
-					'wwwroot/css/*.css',
-					'wwwroot/js/app.min.js',
-					'Views/**/*.cshtml',
-				],
-				options: {
-					reload: true,
-				},
-			},
-		},
-		clean: ['wwwroot/css/*', 'wwwroot/js/*', 'ScriptsAndCss/Combined/*'],
-		cssmin: {
-			//сжатие CSS
-			css: {
-				src: ['ScriptsAndCss/CssFiles/*'], //какой файл сжимать
-				dest: 'wwwroot/css/app.min.css', //сжатый выходной файл
+				tasks: ['webpack:build'],
 			},
 		},
 	})
@@ -270,10 +231,8 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-webpack')
 	grunt.loadNpmTasks('grunt-browser-sync')
 	grunt.loadNpmTasks('grunt-contrib-watch')
-	grunt.loadNpmTasks('grunt-contrib-clean')
-	grunt.loadNpmTasks('grunt-contrib-cssmin')
 
-	grunt.registerTask('build', ['clean', 'webpack:build', 'cssmin'])
+	grunt.registerTask('build', ['webpack:build'])
 	grunt.registerTask('default', ['build', 'browserSync:dev', 'watch'])
 }
 ```
@@ -282,247 +241,76 @@ module.exports = function (grunt) {
 
 ---
 
-4. ⛅ Импорт `app_configuration.json` ⛅
+## 🎇 Build Process Stages 🎇
 
 ---
 
-<details>
-<summary>Раскрыть код app_configuration.json</summary>
+- 🌋 Restore NPM packages
 
-```json
-{
-	"appSettings": {
-		"appHost": "localhost:8833"
-	}
-}
+- 🌋 Setup frontend directories:
+
+```
+ScriptsAndCss/
+ ├─ CssFiles/
+ ├─ JsScripts/
+ └─ TypeScripts/
 ```
 
-</details>
+- 🌋 Install NuGet packages:
+  - `TypeScript.MSBuild`
+  - `AspNetCore.Mvc.Razor.RuntimeCompilation`
+  - `Swashbuckle.AspNetCore.Swagger`
+  - `Swashbuckle.AspNetCore.SwaggerGen`
+  - `Swashbuckle.AspNetCore.SwaggerUI`
+
+- 🌋 Update paths in `_Layout.cshtml` to:
+  - `app.min.css`
+  - `app.min.js`
 
 ---
 
-## 🎇 Этапы сборочного процесса 🎇
+## 🎇 Result 🎇
+
+### 📷 Base 📷
+
+After successful startup:
+
+- Server: `https://localhost:8833`
+- Swagger: `https://localhost:8833/docs/`
 
 ---
 
-- 🌋 Восстановить NPM пакеты
+### 📷 Features 📷
+
+- Live reload via BrowserSync
+- Webpack build + minification
+- TypeScript modern features
+- Scalable backend with ASP.NET Core MVC
+- Strong typing on frontend
 
 ---
 
-- 🌋 Настроить директории для генерации Frontend
-  - в корне проекта где мы будем его внедрять создаём такуб структуру папок
-    - 📁ScriptsAndCss
-      - 📁〰️📁CssFiles
-      - 📁〰️📁JsScripts
-      - 📁〰️📁TypeScripts
+### 📷 Approximate Development Process 📷
 
----
+🎃 Frontend (TypeScript + Webpack):
 
-- 🌋 Установить Nuget пакеты
-  - **`TypeScript.MSBuild`**
-  - **`AspNetCore.Mvc.Razor.RuntimeCompilation`**
-  - **`Swashbuckle.AspNetCore.Swagger`**
-  - **`Swashbuckle.AspNetCore.SwaggerGen`**
-  - **`Swashbuckle.AspNetCore.SwaggerUI`**
+- Write TypeScript → compile via Webpack
+- Assets are bundled & minimized
+- Grunt automates build tasks
 
----
+🎈 Backend (ASP.NET Core MVC):
 
-- 🌋 В файле `Views/Shared/_Layout.cshtml` изменить адреса до `css` и `js` файлов так как теперь они называются **`app.min.css`** и **`app.min.js`**
+- Handles business logic & API
+- Serves static files from `wwwroot`
 
----
+🎃 Automation:
 
-- 🌋 Добавить простейшую точку входа `[js]` приложения в папку 📁ScriptsAndCss〰️>📁TypeScripts - **`main_api.ts`**
+- Grunt automates builds
+- Webpack enables hot reload
 
-<details>
-<summary>Раскрыть код main_api.ts</summary>
+🎈 Development:
 
-```ts
-(() => {
-    //по загрузке окна
-    window.addEventListener("load", async () => {
-        //получаем текущий URL
-        const currentUrl = new URL(document.location.href);
-
-        //получаем путь из URL
-        const pathname = currentUrl.pathname.toLowerCase();
-
-        //разбиваем пути URL на части
-        const partsPath = pathname.split("/");
-
-        //смотрим путь
-        switch (partsPath[1]) {
-            case "": //страница авторизации
-            {
-
-            }
-            break;
-            default:
-                break;
-        }
-    }
-})();
-```
-
-</details>
-<br>
-
----
-
-- 🌋 Добавить простейшую точку входа `[css]` приложения в папку 📁ScriptsAndCss〰️>📁CssFiles - **`style.css`**
-
-<details>
-<summary>Раскрыть код style.css</summary>
-
-```ts
-// ваши стили - скопируйте из wwwroot то что там было
-```
-
-</details>
-<br>
-
----
-
-- 🌋 Добавить примерно такое содержимое в **`Program.cs`**
-  > Поясняю - в данном примере вырезано внесение `CSRF` токена в логику работы сервера а также `Middleware` отвечающий за обработку служб защиты от подделки запросов. Тут мы вносим лишь Swagger для генерации документации по API и конфигурационный файл декларирующий **`host`** и **`port`** вашего сервера принудительно.
-
-<details>
-<summary>Раскрыть код Program.cs</summary>
-
-```cs
-using System.Reflection;
-using System.Text.Json;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Models;
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile($"{LoggingExtensions.AppDir}/app_configuration.json");
-
-builder.WebHost.UseUrls($"https://{builder.Configuration["appSettings:appHost"]}");
-
-builder.Services.AddControllersWithViews();
-
-#region В этом регионе объявляем сервисы
-
-// Например
-// builder.Services.AddSingleton<ICashService, CashService>();
-
-#endregion
-
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.JsonSerializerOptions.WriteIndented = true; //для красивого форматирования
-    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-});
-
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "App API",
-        Version = "1.0.0",
-        Description = "Информация об API",
-        Contact = new OpenApiContact
-        {
-            Name = "Dvurechensky"
-        }
-    });
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    options.IncludeXmlComments(xmlPath);
-});
-
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-else
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Документация");
-        c.RoutePrefix = "docs";
-    });
-    app.UseDeveloperExceptionPage(); //используем страницу исключений
-}
-
-// app.UseHttpsRedirection();
-
-app.UseStaticFiles();
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
-```
-
-</details>
-<br>
-
----
-
-- 🌋 В диспетчере выполнения задач выполнить задачу `default` для генерации файлов
-
----
-
-- 🌋 В настройках проекта в разделе `Выходные данные` поставить галочку на `Файл документации` - `Создание файла, содержащего документацию по API` для успешной работы **`Swagger`**
-
----
-
-## 🎇 Итог 🎇
-
-#### 📷 База 📷
-
-При успешном старте в данном примере мы получим сервер:
-
-- по адресу **`https://localhost:8833`**
-- документацию Swagger **`https://localhost:8833/docs/`**
-
----
-
-#### 📷 Плюшки 📷
-
----
-
-- в свою очередь при вёрстке `Typescript` и активированной задаче `default` в `Диспетчере выполнения задач` - в реальном времени будет перезагружаться страница и мы увидим новые изменения на `Frontned` - лицевой стороне Web-сервера после каждого сохранения файла в проекте
-- при установке параметров указанных для `production` версии в файле `webpack.config.js` мы можем собрать `Release` версию и опубликовать её в сеть в которой все файлы `css` и `js` будут сжаты и минимизированы для более быстрой и качественной работы сервера в сети
-- мы можем прикрутить любую существующую библиотеку NPM и использовать её в скриптах `Typescript` для создания качественного `Frontend` - состояние которого мы можем отслеживать в реальном времени при разработке. Typescript поддерживает последние возможности ECMAScript (например, async/await, декораторы, модули и т. д.), что делает код более современным и удобным.
-- используя ASP.NET Core MVC для серверной части (backend), позволяет создавать масштабируемые, производительные и безопасные веб-приложения
-- Typescript для фронтенда (frontend) обеспечивает типизацию и улучшение читаемости кода, предотвращая множество ошибок, которые могут возникнуть при использовании обычного JavaScript.
-
----
-
-#### 📷 Примерный процесс разработки: 📷
-
----
-
-🎃 Frontend (Typescript + Webpack):
-
-🎈 Вы пишете код на Typescript, который потом компилируется с помощью Webpack.
-Webpack минифицирует и обрабатывает ваши файлы, генерирует отдельные чанки для кода, CSS и изображений.
-Grunt помогает автоматизировать задачи, такие как запуск Webpack, минификация CSS/JS, запуск локального сервера с BrowserSync.
-Backend (ASP.NET Core MVC):
-
-🎈 Серверная часть обрабатывает бизнес-логику, запросы от клиента и взаимодействует с базой данных.
-Вся верстка и фронтенд код (собранный через Webpack) размещаются в папке wwwroot или другой папке для статических файлов.
-
-🎃 Автоматизация сборки и деплоя:
-
-🎈 Grunt автоматически обрабатывает сборку фронтенда, выполняет задачи, такие как минификация, копирование файлов и т. д.
-Webpack поддерживает горячую замену модулей, что ускоряет процесс разработки.
-Разработка с возможностью тестирования и отладки:
-
-🎈 В процессе разработки с помощью BrowserSync можно синхронизировать несколько браузеров и автоматически перезагружать страницы.
-Webpack и Grunt делают разработку более продуктивной за счет автоматизации рутинных задач.
+- BrowserSync syncs browsers
+- Faster dev via automation
 
 <p align="center">✨Dvurechensky✨</p>
