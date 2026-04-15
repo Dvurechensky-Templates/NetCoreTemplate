@@ -15,16 +15,13 @@
 
 <h1 align="center"> 🌁 ASP.NET Core MVC Project Template, Frontend — TypeScript </h1>
 
-<div align="center" style="margin: 20px 0; padding: 10px; background: #1c1917; border-radius: 10px;">
-  <strong>🌐 Language: </strong>
-  
-  <a href="./README.ru.md" style="color: #F5F752; margin: 0 10px;">
-    🇷🇺 Russian
-  </a>
-  | 
-  <span style="color: #0891b2; margin: 0 10px;">
-    ✅ 🇺🇸 English (current)
-  </span>
+<div align="center">
+
+<strong>Language: </strong>
+<a href="./README.zh.md">🇨🇳 中文</a> |
+<a href="./README.ru.md">🇷🇺 Russian</a> |
+<span style="color: #F5F752; margin: 0 10px;">✅ 🇺🇸 English (current)</span>
+
 </div>
 
 ---
