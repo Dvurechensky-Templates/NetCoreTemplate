@@ -2,8 +2,8 @@
  * Author: Nikolay Dvurechensky
  * Site: https://dvurechensky.pro/
  * Gmail: dvurechenskysoft@gmail.com
- * Last Updated: 16 апреля 2026 12:00:09
- * Version: 1.0.240
+ * Last Updated: 17 апреля 2026 07:02:57
+ * Version: 1.0.241
  */
 
 namespace AppWeb.Models
