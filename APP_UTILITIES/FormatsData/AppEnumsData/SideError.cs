@@ -2,8 +2,8 @@
  * Author: Nikolay Dvurechensky
  * Site: https://dvurechensky.pro/
  * Gmail: dvurechenskysoft@gmail.com
- * Last Updated: 12 июня 2026 07:14:01
- * Version: 1.0.296
+ * Last Updated: 13 июня 2026 14:20:32
+ * Version: 1.0.297
  */
 
 namespace APP_UTILITIES.FormatsData.AppEnumsData;
