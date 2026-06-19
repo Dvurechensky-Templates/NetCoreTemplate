@@ -2,8 +2,8 @@
  * Author: Nikolay Dvurechensky
  * Site: https://dvurechensky.pro/
  * Gmail: dvurechenskysoft@gmail.com
- * Last Updated: 18 июня 2026 07:13:20
- * Version: 1.0.302
+ * Last Updated: 19 июня 2026 07:11:29
+ * Version: 1.0.303
  */
 
 using System.Text.Json;
